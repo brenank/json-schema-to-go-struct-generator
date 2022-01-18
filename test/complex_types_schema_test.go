@@ -2,7 +2,7 @@ package test
 
 import (
 	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/converter"
-	models "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/complex-types"
+	_ "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/complex-types"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"path"
@@ -12,25 +12,20 @@ import (
 //go:generate go run ../cmd/main.go --input ./samples/complex-types --output ./generated/complex-types/models.go
 
 func TestDoesNotContainDuplicateStructs(t *testing.T) {
-	assert.NotNil(t, models.Bar1{Person: &models.Person{
-		Child: &models.Person{
-			Child: nil,
-			First: "",
-			Last:  "",
-		},
-		First: "",
-		Last:  "",
-	}})
+	pkg := GetPackageStructs("github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/complex-types")
 
-	assert.NotNil(t, models.Bar2{Person: &models.Person{
-		Child: &models.Person{
-			Child: nil,
-			First: "",
-			Last:  "",
-		},
-		First: "",
-		Last:  "",
-	}})
+	assert.NotNil(t, pkg)
+	assert.True(t, pkg.HasField("Bar1"))
+	assert.True(t, pkg.HasField("Bar2"))
+	assert.True(t, pkg.HasField("Bar10"))
+	assert.True(t, pkg.HasField("Bar11"))
+	assert.True(t, pkg.HasField("Bar12"))
+
+	assert.True(t, pkg.HasField("Foo"))
+	assert.True(t, pkg.HasFieldWithPrefix("Foo_"))
+
+	assert.True(t, pkg.HasField("Person"))
+	assert.True(t, pkg.HasFieldWithPrefix("Person_"))
 }
 
 func TestGenerate1(t *testing.T) {
