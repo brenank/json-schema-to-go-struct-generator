@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/utils"
 	"regexp"
+	"sort"
 	"strings"
 	"unicode"
 )
@@ -126,24 +127,26 @@ func (g *Generator) addStruct(item *Struct) error {
 			continue
 		}
 
-		strctIsAlias := strct.TypeInfo.isAlias
+		strctIsAlias := strct.TypeInfo.IsAlias()
 
-		//if this can be merged, remove existing struct, create and add both as aliases of new Struct
+		//if this can be merged, remove existing struct, create and add both as aliasFor of new Struct
 		if merged := strct.unifiedWith(item); merged != nil {
 			f1FieldName := strct.TypeInfo.String()
 			f2FieldName := item.TypeInfo.String()
-			merged.TypeInfo.Name = fmt.Sprintf("%s_%s", f1FieldName, f2FieldName)
-			merged.Description = fmt.Sprintf("\nAliased for: %s", merged.TypeInfo.Name)
-			merged.TypeInfo.isAlias = true
 			g.Structs[merged.TypeInfo.String()] = merged
 			delete(g.Structs, key)
 
-			//add aliases
+			//add aliasFor
 			if !strctIsAlias {
 				//only add as alias if this type is not an alias itself
 				g.Aliases[f1FieldName] = NewField(f1FieldName, "", merged.TypeInfo, false, []string{strct.Description})
+				merged.TypeInfo.AddAliasFor(f1FieldName)
 			}
 			g.Aliases[f2FieldName] = NewField(f2FieldName, "", merged.TypeInfo, false, []string{item.Description})
+			merged.TypeInfo.AddAliasFor(f2FieldName)
+
+			merged.TypeInfo.Name = strings.Join(merged.TypeInfo.aliasFor, "_")
+			merged.Description = fmt.Sprintf("\nAliased for: %s", strings.Join(merged.TypeInfo.aliasFor, ", "))
 
 			return nil
 		}
@@ -546,7 +549,7 @@ type TypeInfo struct {
 	hasSameNames     bool
 	isRootType       bool
 	referencedFields map[string]*Field
-	isAlias          bool
+	aliasFor         []string
 }
 
 func (p *TypeInfo) ShortName() string {
@@ -581,12 +584,23 @@ func (p *TypeInfo) Replaces(old *TypeInfo) {
 	for _, f := range old.referencedFields {
 		p.AddFieldReference(f)
 	}
+
+	for _, f := range old.aliasFor {
+		p.AddAliasFor(f)
+	}
 }
 func (p *TypeInfo) String() string {
 	if p.hasSameNames {
 		return p.LongName()
 	}
 	return p.ShortName()
+}
+func (p *TypeInfo) IsAlias() bool {
+	return len(p.aliasFor) > 0
+}
+func (p *TypeInfo) AddAliasFor(name string) {
+	p.aliasFor = utils.UniqueStrings(append(p.aliasFor, name))
+	sort.Strings(p.aliasFor)
 }
 
 func (p *TypeInfo) getPrimitiveTypeName() (name string, err error) {

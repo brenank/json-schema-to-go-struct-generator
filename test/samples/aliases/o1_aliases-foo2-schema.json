@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Foo2",
+  "properties": {
+    "bar1": {
+      "title": "Bar1",
+      "type": "string"
+    },
+    "bar2": {
+      "title": "Bar2",
+      "type": "string"
+    },
+    "bar3": {
+      "title": "Bar3",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
