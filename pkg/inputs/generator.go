@@ -119,9 +119,24 @@ func (g *Generator) consolidateStructsAndTypes() error {
 	return nil
 }
 
+func (g *Generator) getStructKeys() []string {
+	keys := make([]string, len(g.Structs))
+
+	i := 0
+	for k := range g.Structs {
+		keys[i] = k
+		i++
+	}
+
+	sort.Strings(keys)
+	return keys
+}
+
 func (g *Generator) addStruct(item *Struct) error {
 	//check if this can be aliased
-	for key, strct := range g.Structs {
+	for _, key := range g.getStructKeys() {
+		strct := g.Structs[key]
+
 		//Only alias and merge root types
 		if !strct.TypeInfo.isRootType || !item.TypeInfo.isRootType {
 			continue
@@ -133,8 +148,6 @@ func (g *Generator) addStruct(item *Struct) error {
 		if merged := strct.unifiedWith(item); merged != nil {
 			f1FieldName := strct.TypeInfo.String()
 			f2FieldName := item.TypeInfo.String()
-			g.Structs[merged.TypeInfo.String()] = merged
-			delete(g.Structs, key)
 
 			//add aliasFor
 			if !strctIsAlias {
@@ -147,6 +160,10 @@ func (g *Generator) addStruct(item *Struct) error {
 
 			merged.TypeInfo.Name = strings.Join(merged.TypeInfo.aliasFor, "_")
 			merged.Description = fmt.Sprintf("\nAliased for: %s", strings.Join(merged.TypeInfo.aliasFor, ", "))
+
+			mergedFieldName := merged.TypeInfo.String()
+			g.Structs[mergedFieldName] = merged
+			delete(g.Structs, key)
 
 			return nil
 		}
