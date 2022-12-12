@@ -15,13 +15,18 @@ func main() {
 		panic(err)
 	}
 
+	packageName := flags.PackageName
+	if packageName == "" {
+		packageName = "models"
+	}
+
 	outPath, err := filepath.Abs(flags.OutputPath)
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Printf("Processing files: %v\n", files)
-	err = converter.Convert(files, "models", outPath, false)
+	err = converter.Convert(files, packageName, outPath, false)
 
 	if err != nil {
 		panic(err)
