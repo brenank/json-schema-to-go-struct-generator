@@ -1,18 +1,19 @@
 package test
 
 import (
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/converter"
-	_ "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/complex-types"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/converter"
+	_ "github.com/brenank/json-schema-to-go-struct-generator/test/generated/complex-types"
+	"github.com/stretchr/testify/assert"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/complex-types --output ./generated/complex-types/models.go
 
 func TestDoesNotContainDuplicateStructs(t *testing.T) {
-	pkg := GetPackageStructs("github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/complex-types")
+	pkg := GetPackageStructs("github.com/brenank/json-schema-to-go-struct-generator/test/generated/complex-types")
 
 	assert.NotNil(t, pkg)
 	assert.True(t, pkg.HasField("Bar1"))

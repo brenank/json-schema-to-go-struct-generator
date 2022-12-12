@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	abandoned "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/abandoned"
+	abandoned "github.com/brenank/json-schema-to-go-struct-generator/test/generated/abandoned"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/abandoned --output ./generated/abandoned/model.go

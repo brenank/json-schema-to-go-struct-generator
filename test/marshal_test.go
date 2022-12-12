@@ -2,9 +2,10 @@ package test
 
 import (
 	"encoding/json"
-	model "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/marshal"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	model "github.com/brenank/json-schema-to-go-struct-generator/test/generated/marshal"
+	"github.com/stretchr/testify/assert"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/marshal --output ./generated/marshal/model.go

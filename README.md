@@ -1,7 +1,7 @@
 # json-schema-to-go-struct-generator
 
-[![build-test](https://github.com/azarc-io/json-schema-to-go-struct-generator/actions/workflows/workflow.yml/badge.svg)](https://github.com/azarc-io/json-schema-to-go-struct-generator/actions/workflows/workflow.yml)
-[![golangci-lint](https://github.com/azarc-io/json-schema-to-go-struct-generator/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/azarc-io/json-schema-to-go-struct-generator/actions/workflows/golangci-lint.yml)
+[![build-test](https://github.com/brenank/json-schema-to-go-struct-generator/actions/workflows/workflow.yml/badge.svg)](https://github.com/brenank/json-schema-to-go-struct-generator/actions/workflows/workflow.yml)
+[![golangci-lint](https://github.com/brenank/json-schema-to-go-struct-generator/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/brenank/json-schema-to-go-struct-generator/actions/workflows/golangci-lint.yml)
 
 A library to generate go models from given json files
 
@@ -17,7 +17,7 @@ A library to generate go models from given json files
 Install
 
 ```console
-$ go get -u github.com/azarc-io/json-schema-to-go-struct-generator
+$ go get -u github.com/brenank/json-schema-to-go-struct-generator
 ```
 
 or
@@ -111,6 +111,6 @@ In order to run the tests, you must first generate the sample outputs which will
 the code required to compile and run the tests.
 
 ```shell
-go generate github.com/azarc-io/json-schema-to-go-struct-generator/test
+go generate github.com/brenank/json-schema-to-go-struct-generator/test
 go test ./test/...
 ```

@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	additionalProperties2 "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/additionalProperties2"
+	additionalProperties2 "github.com/brenank/json-schema-to-go-struct-generator/test/generated/additionalProperties2"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/additionalProperties2 --output ./generated/additionalProperties2/model.go

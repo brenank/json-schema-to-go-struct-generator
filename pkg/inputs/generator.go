@@ -4,11 +4,12 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/utils"
 	"regexp"
 	"sort"
 	"strings"
 	"unicode"
+
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/utils"
 )
 
 // Generator will produce structs from the JSON schema.

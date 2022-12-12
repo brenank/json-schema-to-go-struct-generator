@@ -2,13 +2,14 @@ package test
 
 import (
 	"encoding/json"
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/converter"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path"
 	"testing"
 
-	example1 "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/example1"
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/converter"
+	"github.com/stretchr/testify/assert"
+
+	example1 "github.com/brenank/json-schema-to-go-struct-generator/test/generated/example1"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/example1 --output ./generated/example1/model.go

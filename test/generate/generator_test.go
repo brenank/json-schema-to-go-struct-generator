@@ -2,11 +2,12 @@ package generate
 
 import (
 	"encoding/json"
-	js_inputs "github.com/azarc-io/json-schema-to-go-struct-generator/pkg/inputs"
-	_ "github.com/azarc-io/json-schema-to-go-struct-generator/pkg/utils"
 	"reflect"
 	"strings"
 	"testing"
+
+	js_inputs "github.com/brenank/json-schema-to-go-struct-generator/pkg/inputs"
+	_ "github.com/brenank/json-schema-to-go-struct-generator/pkg/utils"
 )
 
 func TestThatCapitalisationOccursCorrectly(t *testing.T) {

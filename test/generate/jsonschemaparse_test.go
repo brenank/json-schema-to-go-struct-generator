@@ -1,9 +1,10 @@
 package generate
 
 import (
-	js_inputs "github.com/azarc-io/json-schema-to-go-struct-generator/pkg/inputs"
 	"net/url"
 	"testing"
+
+	js_inputs "github.com/brenank/json-schema-to-go-struct-generator/pkg/inputs"
 )
 
 func TestThatAMissingSchemaKeyResultsInAnError(t *testing.T) {

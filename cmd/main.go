@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/converter"
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/utils"
 	"path/filepath"
+
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/converter"
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/utils"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 		panic(err)
 	}
 
-	outPath,err := filepath.Abs(flags.OutputPath)
+	outPath, err := filepath.Abs(flags.OutputPath)
 	if err != nil {
 		panic(err)
 	}
