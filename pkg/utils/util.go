@@ -50,18 +50,21 @@ func ReadFiles(inputPath string) ([]string, error) {
 }
 
 type Flags struct {
-	InputDir   string
-	OutputPath string
+	InputDir    string
+	PackageName string
+	OutputPath  string
 }
 
 func ParseFlags() Flags {
 	inputDir := flag.String("input", "../schemas", "Please enter the input directory")
+	packageName := flag.String("package", "model", "Please enter the package name of generated go file")
 	outputPath := flag.String("output", "../output.go", "Please enter the target output go file")
 	flag.Parse()
 
 	return Flags{
-		InputDir:  *inputDir,
-		OutputPath: *outputPath,
+		InputDir:    *inputDir,
+		PackageName: *packageName,
+		OutputPath:  *outputPath,
 	}
 }
 
