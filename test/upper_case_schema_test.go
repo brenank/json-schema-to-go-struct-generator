@@ -1,12 +1,13 @@
 package test
 
 import (
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/converter"
-	models "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/upper-case-titles"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/converter"
+	models "github.com/brenank/json-schema-to-go-struct-generator/test/generated/upper-case-titles"
+	"github.com/stretchr/testify/assert"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/upper-case-titles --output ./generated/upper-case-titles/model.go

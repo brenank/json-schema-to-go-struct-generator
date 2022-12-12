@@ -1,4 +1,4 @@
-module github.com/azarc-io/json-schema-to-go-struct-generator
+module github.com/brenank/json-schema-to-go-struct-generator
 
 go 1.17
 

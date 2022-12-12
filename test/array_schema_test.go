@@ -1,9 +1,10 @@
 package test
 
 import (
-	models "github.com/azarc-io/json-schema-to-go-struct-generator/test/generated/arrays"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	models "github.com/brenank/json-schema-to-go-struct-generator/test/generated/arrays"
+	"github.com/stretchr/testify/assert"
 )
 
 //go:generate go run ../cmd/main.go --input ./samples/arrays --output ./generated/arrays/model.go

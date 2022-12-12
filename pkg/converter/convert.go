@@ -1,12 +1,13 @@
 package converter
 
 import (
-	"github.com/azarc-io/json-schema-to-go-struct-generator/pkg/inputs"
-	"github.com/pkg/errors"
 	"io"
 	"os"
 	"path/filepath"
 	"sort"
+
+	"github.com/brenank/json-schema-to-go-struct-generator/pkg/inputs"
+	"github.com/pkg/errors"
 )
 
 func Convert(inputFiles []string, packageName string, outputFile string, debug bool) error {

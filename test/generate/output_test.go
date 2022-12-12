@@ -1,10 +1,11 @@
 package generate
 
 import (
-	js_inputs "github.com/azarc-io/json-schema-to-go-struct-generator/pkg/inputs"
 	"reflect"
 	"strings"
 	"testing"
+
+	js_inputs "github.com/brenank/json-schema-to-go-struct-generator/pkg/inputs"
 )
 
 func TestThatFieldNamesAreOrdered(t *testing.T) {
